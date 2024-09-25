@@ -10,7 +10,8 @@ namespace ProjectTwo.Core
     {
         static void Main(string[] args)
         {
-            Console.Write("Hello Bebra !");
+            Console.WriteLine("Hello Bebra!");
+            Console.Write("What are you doing?");
         }
     }
 }
