@@ -11,7 +11,6 @@ namespace ProjectTwo.Core
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Bebra!");
-            Console.Write("What are you doing?");
         }
     }
 }
