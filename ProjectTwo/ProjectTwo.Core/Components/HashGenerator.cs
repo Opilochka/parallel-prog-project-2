@@ -6,13 +6,11 @@ namespace ProjectTwo.Core.Components
 {
     internal class HashGenerator
     {
-        public void Create(int N)
+        public string Create(int N)
         {
             string input = generateString(N);
             string hash = generateHash(input);
-            Console.WriteLine(input);
-            Console.WriteLine(hash);
-            Console.ReadLine();
+            return hash;
         }
 
         public string generateHash(string input)
