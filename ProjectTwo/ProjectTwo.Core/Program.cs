@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectTwo.Core.Components;
+using System;
 
 namespace ProjectTwo.Core
 {
@@ -6,7 +7,8 @@ namespace ProjectTwo.Core
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Bebra!");
+            var hg = new HashGenerator();
+            hg.Create(10);
         }
     }
 }
