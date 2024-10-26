@@ -23,7 +23,9 @@ namespace ProjectTwo.Core.Components
                 {
                     builder += b.ToString("x2");
                 }
-                return builder.Substring(0, N);
+                builder = builder.Substring(0, N);
+                Console.WriteLine($"Заданный хэш: {builder}");
+                return builder;
             }
         }
     }

@@ -17,9 +17,13 @@ namespace ProjectTwo.Core.Components
             for (int i = 0; i < num_combinations; i++)
             {
                 string tmp = generateHashString(i, N, hash_symbols);
-                Console.WriteLine(tmp);
+
+                if (hashChecking(tmp, target_hash)) 
+                {
+                    Console.WriteLine($"Подбор завершен, результат: {tmp}");
+                    break;
+                }
             }
-            Console.ReadLine();
         }
         public string generateHashString(int index, int N, string hash_symbols)
         {
@@ -30,6 +34,11 @@ namespace ProjectTwo.Core.Components
                 index /= hash_symbols.Length;
             }
             return new string(result);
+        }
+
+        public bool hashChecking(string maybe_str, string target_hash)
+        {
+            return maybe_str == target_hash;
         }
     }
 }
