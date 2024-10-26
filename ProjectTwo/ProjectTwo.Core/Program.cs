@@ -8,7 +8,9 @@ namespace ProjectTwo.Core
         static void Main(string[] args)
         {
             var hg = new HashGenerator();
-            hg.Create(10);
+            string hash = hg.Create(3);
+            var mainer = new Mainer();
+            mainer.Launch(3, hash);
         }
     }
 }
