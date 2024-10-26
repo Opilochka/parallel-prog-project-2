@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -6,38 +7,24 @@ namespace ProjectTwo.Core.Components
 {
     internal class HashGenerator
     {
-        public string Create(int N)
+        public string generateHash(int N)
         {
-            string input = generateString(N);
-            string hash = generateHash(input);
-            return hash;
-        }
+            byte[] bytes = new byte[N];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(bytes);
+            }
 
-        public string generateHash(string input)
-        {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-
+                byte[] hash_bytes = sha256.ComputeHash(bytes);
                 string builder = "";
                 foreach (byte b in bytes)
                 {
                     builder += b.ToString("x2");
                 }
-                return builder;
+                return builder.Substring(0, N);
             }
-        }
-
-        public string generateString(int N)
-        {
-            var rand = new Random();
-            string new_str = "";
-            string lang = "abcdefghijklmnopqrstuvwxyz";
-            for (int i = 0; i < N; i++)
-            {
-                new_str += lang[rand.Next() % 26];
-            }
-            return new_str;
         }
     }
 }
