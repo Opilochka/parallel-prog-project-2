@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace ProjectTwo.Core.Components
 {
     internal class HashGenerator
     {
+        /// <summary>
+        /// Генерация начального хэша
+        /// </summary>
+        /// <param name="N">длина хэша</param>
+        /// <returns>строка хэша</returns>
         public string generateHash(int N)
         {
             byte[] bytes = new byte[N];

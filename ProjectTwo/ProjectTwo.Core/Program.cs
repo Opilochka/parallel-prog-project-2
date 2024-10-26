@@ -5,7 +5,11 @@ namespace ProjectTwo.Core
 {
     internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Точка входа
+        /// </summary>
+        /// <param name="args"></param>
+        static void Main()
         {
             var hg = new HashGenerator();
             string hash = hg.generateHash(3);
