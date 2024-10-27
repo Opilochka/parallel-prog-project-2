@@ -11,11 +11,13 @@ namespace ProjectTwo.Core
         /// <param name="args"></param>
         static void Main()
         {
-            var hg = new HashGenerator();
-            string hash = hg.generateHash(7);
-            var mainer = new Mainer();
             int[] threads = new int[] { 1, 2, 4, 8, 16 };
-            mainer.Launch(7, hash, threads);
+            int hash_length = 7;
+
+            var hg = new HashGenerator();
+            string hash = hg.generateHash(hash_length);
+            var mainer = new Mainer();
+            mainer.Launch(hash_length, hash, threads);
             Console.ReadLine();
         }
     }

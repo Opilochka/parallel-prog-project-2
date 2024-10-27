@@ -20,10 +20,8 @@ namespace ProjectTwo.Core.Components
                 hashSelectionSeveralThreads(N, target_hash, t);
             }
         }
-
         public void hashSelectionSeveralThreads(int N, string target_hash, uint num_threads)
         {
-
             DotMP.Parallel.ParallelRegion(num_threads: num_threads, action: () =>
             {
                 string hash_symbols = "0123456789abcdef";
@@ -46,8 +44,6 @@ namespace ProjectTwo.Core.Components
                 });
             });
         }
-
-        
         /// <summary>
         /// Генерация хэша заданной длины
         /// </summary>
