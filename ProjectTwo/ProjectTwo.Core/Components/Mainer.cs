@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace ProjectTwo.Core.Components
 {
@@ -9,9 +11,10 @@ namespace ProjectTwo.Core.Components
         /// </summary>
         /// <param name="N">длина хэша</param>
         /// <param name="target_hash">заданный хэш для подбора</param>
+        private const string FILE_PATH = "ThreadsInfo.txt";
         public void Launch(int N, string target_hash, int[] threads)
         {
-            //hashSelectionOneThread(N, target_hash);
+            File.Delete(FILE_PATH);
             foreach (uint t in threads)
             {
                 hashSelectionSeveralThreads(N, target_hash, t);
@@ -25,6 +28,9 @@ namespace ProjectTwo.Core.Components
             {
                 string hash_symbols = "0123456789abcdef";
                 int num_combinations = (int)Math.Pow(hash_symbols.Length, N);
+                var st = new Stopwatch();
+
+                st.Start();
 
                 DotMP.Parallel.For(0, num_combinations, i =>
                 {
@@ -33,32 +39,15 @@ namespace ProjectTwo.Core.Components
                     if (hashChecking(tmp, target_hash))
                     {
                         Console.WriteLine($"Подбор завершен, результат: {tmp}");
+                        st.Stop();
+                        File.AppendAllText(FILE_PATH, num_threads + "\t" + st.Elapsed.Seconds.ToString() + Environment.NewLine);
+                        return;
                     }
                 });
             });
         }
 
-        /// <summary>
-        /// Функция подбора хэша
-        /// </summary>
-        /// <param name="N">длина хэша</param>
-        /// <param name="target_hash">заданный хэш для подбора</param>
-        public void hashSelectionOneThread(int N, string target_hash)
-        {
-            string hash_symbols = "0123456789abcdef";
-            int num_combinations = (int)Math.Pow(hash_symbols.Length, N);
-
-            for (int i = 0; i < num_combinations; i++)
-            {
-                string tmp = generateMaybeHashString(i, N, hash_symbols);
-
-                if (hashChecking(tmp, target_hash)) 
-                {
-                    Console.WriteLine($"Подбор завершен, результат: {tmp}");
-                    break;
-                }
-            }
-        }
+        
         /// <summary>
         /// Генерация хэша заданной длины
         /// </summary>
