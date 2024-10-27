@@ -9,22 +9,48 @@ namespace ProjectTwo.Core.Components
         /// </summary>
         /// <param name="N">длина хэша</param>
         /// <param name="target_hash">заданный хэш для подбора</param>
-        public void Launch(int N, string target_hash)
+        public void Launch(int N, string target_hash, int[] threads)
         {
-            hashSelection(N, target_hash);
+            //hashSelectionOneThread(N, target_hash);
+            foreach (uint t in threads)
+            {
+                hashSelectionSeveralThreads(N, target_hash, t);
+            }
         }
+
+        public void hashSelectionSeveralThreads(int N, string target_hash, uint num_threads)
+        {
+
+            DotMP.Parallel.ParallelRegion(num_threads: num_threads, action: () =>
+            {
+                string hash_symbols = "0123456789abcdef";
+                int num_combinations = (int)Math.Pow(hash_symbols.Length, N);
+
+                DotMP.Parallel.For(0, num_combinations, i =>
+                {
+                    string tmp = generateMaybeHashString(i, N, hash_symbols);
+
+                    if (hashChecking(tmp, target_hash))
+                    {
+                        Console.WriteLine($"Подбор завершен, результат: {tmp}");
+                    }
+                });
+            });
+        }
+
         /// <summary>
         /// Функция подбора хэша
         /// </summary>
         /// <param name="N">длина хэша</param>
         /// <param name="target_hash">заданный хэш для подбора</param>
-        public void hashSelection(int N, string target_hash)
+        public void hashSelectionOneThread(int N, string target_hash)
         {
             string hash_symbols = "0123456789abcdef";
             int num_combinations = (int)Math.Pow(hash_symbols.Length, N);
+
             for (int i = 0; i < num_combinations; i++)
             {
-                string tmp = generateHashString(i, N, hash_symbols);
+                string tmp = generateMaybeHashString(i, N, hash_symbols);
 
                 if (hashChecking(tmp, target_hash)) 
                 {
@@ -40,7 +66,7 @@ namespace ProjectTwo.Core.Components
         /// <param name="N">длина хэша</param>
         /// <param name="hash_symbols">16-ричный набор символов</param>
         /// <returns>строка хэша</returns>
-        public string generateHashString(int index, int N, string hash_symbols)
+        public string generateMaybeHashString(int index, int N, string hash_symbols)
         {
             char[] result = new char[N];
             for (int i = 0; i < N; i++)

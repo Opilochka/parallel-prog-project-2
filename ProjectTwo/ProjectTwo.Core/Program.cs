@@ -14,7 +14,8 @@ namespace ProjectTwo.Core
             var hg = new HashGenerator();
             string hash = hg.generateHash(3);
             var mainer = new Mainer();
-            mainer.Launch(3, hash);
+            int[] threads = new int[] { 2, 4, 8, 16 };
+            mainer.Launch(3, hash, threads);
             Console.ReadLine();
         }
     }
