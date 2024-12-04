@@ -10,13 +10,13 @@ namespace ProjectTwo.Tests
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(10);
-            Assert.AreEqual(10, hash.Length);
+            Assert.That(hash.Length, Is.EqualTo(10));
 
             hash = generator.generateHash(64);
-            Assert.AreEqual(64, hash.Length);
+            Assert.That(hash.Length, Is.EqualTo(64));
 
-            hash = generator.generateHash(100); // Запрос длины больше чем доступно, но функция должна корректно работать
-            Assert.AreEqual(100, hash.Length); // Проверяем, что функция не выбросила исключение и вернула правильную длину
+            hash = generator.generateHash(100);
+            Assert.That(hash.Length, Is.EqualTo(100));
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace ProjectTwo.Tests
             var generator = new HashGenerator();
             string hash1 = generator.generateHash(10);
             string hash2 = generator.generateHash(10);
-            Assert.AreNotEqual(hash1, hash2);// Проверка на различие хэшей при одинаковых входных
+            Assert.That(hash1, Is.Not.EqualTo(hash2));
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace ProjectTwo.Tests
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(0);
-            Assert.AreEqual(0, hash.Length); // Проверка на нулевую длину
+            Assert.That(hash.Length, Is.EqualTo(0));
         }
 
         /*
@@ -42,7 +42,7 @@ namespace ProjectTwo.Tests
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(-5);
-            Assert.AreEqual(0, hash.Length); // Проверка на отрицательную длину
+            Assert.That(hash.Length, Is.EqualTo(0)); 
         }
         */
         //kk 5
