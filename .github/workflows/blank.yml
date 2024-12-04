@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore ./Project2/Project2.sln
+      run: dotnet restore ./ProjectTwo/ProjectTwo.sln
     - name: Build
-      run: dotnet build --no-restore ./Project2/Project2.sln
+      run: dotnet build --no-restore ./ProjectTwo/ProjectTwo.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./Project2/Project2.sln
+      run: dotnet test --no-build --verbosity normal ./ProjectTwo/ProjectTwo.sln
