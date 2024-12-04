@@ -1,11 +1,10 @@
 ﻿using NUnit.Framework;
 using ProjectTwo.Core.Components;
 
-
 namespace ConsoleAppTests
 {
     [TestFixture]
-    public class HashGeneratorTests
+    class UnitTest1
     {
         [Test]
         public void generateHash_ReturnsStringOfCorrectLength()
@@ -19,7 +18,7 @@ namespace ConsoleAppTests
 
             hash = generator.generateHash(100); // Запрос длины больше чем доступно, но функция должна корректно работать
             Assert.Equals(64, hash.Length); // Проверяем, что функция не выбросила исключение и вернула правильную длину
-        }`
+        }
 
         [Test]
         public void generateHash_ReturnsDifferentHashesOnMultipleCalls()
@@ -44,13 +43,6 @@ namespace ConsoleAppTests
             var generator = new HashGenerator();
             string hash = generator.generateHash(-5);
             Assert.Equals(0, hash.Length); // Проверка на отрицательную длину
-        }
-
-    }
-    class Program
-    {
-        static void Main(string[] args)
-        {
         }
     }
 }
