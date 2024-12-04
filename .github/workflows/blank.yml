@@ -11,8 +11,8 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    # Используем Windows, потому что .NET Framework работает только на Windows
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
