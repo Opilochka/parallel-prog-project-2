@@ -12,7 +12,7 @@ namespace ProjectTwo.Core
         static void Main()
         {
             int[] threads = new int[] { 1, 2, 4, 8, 16 };
-            int hash_length = 7;
+            int hash_length = 6;
 
             var hg = new HashGenerator();
             string hash = hg.generateHash(hash_length);

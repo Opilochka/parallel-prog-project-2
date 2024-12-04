@@ -5,6 +5,7 @@ using System.IO;
 namespace ProjectTwo.Core.Components
 {
     public class Mainer
+    internal class Mainer
     {
         /// <summary>
         /// Запуск подбора хэша
