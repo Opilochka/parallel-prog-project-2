@@ -38,7 +38,7 @@ namespace ProjectTwo.Core.Components
                     {
                         Console.WriteLine($"Подбор завершен, результат: {tmp}");
                         st.Stop();
-                        File.AppendAllText(FILE_PATH, num_threads + "\t" + st.Elapsed.Seconds.ToString() + Environment.NewLine);
+                        File.AppendAllText(FILE_PATH, num_threads + "\t" + st.Elapsed.Milliseconds.ToString() + Environment.NewLine);
                         return;
                     }
                 });
