@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 
 namespace ProjectTwo.Core.Components
 {
+    public class HashGenerator
     {
         /// <summary>
         /// Генерация начального хэша
