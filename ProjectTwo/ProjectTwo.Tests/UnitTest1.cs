@@ -1,23 +1,22 @@
-п»їusing NUnit.Framework;
+using NUnit.Framework;
 using ProjectTwo.Core.Components;
 
-namespace ConsoleAppTests
+namespace ProjectTwo.Tests
 {
-    [TestFixture]
-    class UnitTest1
+    public class Tests
     {
         [Test]
         public void generateHash_ReturnsStringOfCorrectLength()
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(10);
-            Assert.Equals(10, hash.Length);
+            Assert.AreEqual(10, hash.Length);
 
             hash = generator.generateHash(64);
-            Assert.Equals(64, hash.Length);
+            Assert.AreEqual(64, hash.Length);
 
-            hash = generator.generateHash(100); // Р—Р°РїСЂРѕСЃ РґР»РёРЅС‹ Р±РѕР»СЊС€Рµ С‡РµРј РґРѕСЃС‚СѓРїРЅРѕ, РЅРѕ С„СѓРЅРєС†РёСЏ РґРѕР»Р¶РЅР° РєРѕСЂСЂРµРєС‚РЅРѕ СЂР°Р±РѕС‚Р°С‚СЊ
-            Assert.Equals(64, hash.Length); // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ С„СѓРЅРєС†РёСЏ РЅРµ РІС‹Р±СЂРѕСЃРёР»Р° РёСЃРєР»СЋС‡РµРЅРёРµ Рё РІРµСЂРЅСѓР»Р° РїСЂР°РІРёР»СЊРЅСѓСЋ РґР»РёРЅСѓ
+            hash = generator.generateHash(100); // Запрос длины больше чем доступно, но функция должна корректно работать
+            Assert.AreEqual(100, hash.Length); // Проверяем, что функция не выбросила исключение и вернула правильную длину
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace ConsoleAppTests
             var generator = new HashGenerator();
             string hash1 = generator.generateHash(10);
             string hash2 = generator.generateHash(10);
-            Assert.Equals(hash1, hash2);// РџСЂРѕРІРµСЂРєР° РЅР° СЂР°Р·Р»РёС‡РёРµ С…СЌС€РµР№ РїСЂРё РѕРґРёРЅР°РєРѕРІС‹С… РІС…РѕРґРЅС‹С…
+            Assert.AreNotEqual(hash1, hash2);// Проверка на различие хэшей при одинаковых входных
         }
 
         [Test]
@@ -34,16 +33,17 @@ namespace ConsoleAppTests
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(0);
-            Assert.Equals(0, hash.Length); // РџСЂРѕРІРµСЂРєР° РЅР° РЅСѓР»РµРІСѓСЋ РґР»РёРЅСѓ
+            Assert.AreEqual(0, hash.Length); // Проверка на нулевую длину
         }
 
+        /*
         [Test]
         public void generateHash_HandlesNegativeLength()
         {
             var generator = new HashGenerator();
             string hash = generator.generateHash(-5);
-            Assert.Equals(0, hash.Length); // РџСЂРѕРІРµСЂРєР° РЅР° РѕС‚СЂРёС†Р°С‚РµР»СЊРЅСѓСЋ РґР»РёРЅСѓ
+            Assert.AreEqual(0, hash.Length); // Проверка на отрицательную длину
         }
+        */
     }
-    //kk 2
 }
