@@ -45,6 +45,6 @@ namespace ProjectTwo.Tests
             Assert.AreEqual(0, hash.Length); // Проверка на отрицательную длину
         }
         */
-        //kk 4
+        //kk 5
     }
 }
