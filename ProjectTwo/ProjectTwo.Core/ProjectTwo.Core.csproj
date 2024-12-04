@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\GraphDrawer.cs" />
     <Compile Include="Components\HashGenerator.cs" />
     <Compile Include="Components\Mainer.cs" />
     <Compile Include="Program.cs" />
