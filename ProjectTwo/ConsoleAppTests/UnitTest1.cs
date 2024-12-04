@@ -45,5 +45,5 @@ namespace ConsoleAppTests
             Assert.Equals(0, hash.Length); // Проверка на отрицательную длину
         }
     }
-    //kk
+    //kk 2
 }
